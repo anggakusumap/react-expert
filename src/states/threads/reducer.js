@@ -1,6 +1,6 @@
 import { ActionType } from './action';
 
-function talksReducer(threads = [], action = {}) {
+const talksReducer = (threads = [], action = {}) => {
   switch (action.type) {
     case ActionType.RECEIVE_THREADS:
       return action.payload.threads;
@@ -35,8 +35,12 @@ function talksReducer(threads = [], action = {}) {
         if (thread.id === action.payload.threadId) {
           return {
             ...thread,
-            upVotesBy: [],
-            downVotesBy: [],
+            upVotesBy: thread.upVotesBy.includes(action.payload.userId)
+              ? thread.upVotesBy.filter((id) => id !== action.payload.userId)
+              : thread.upVotesBy,
+            downVotesBy: thread.downVotesBy.includes(action.payload.userId)
+              ? thread.downVotesBy.filter((id) => id !== action.payload.userId)
+              : thread.downVotesBy,
           };
         }
         return thread;
@@ -44,6 +48,6 @@ function talksReducer(threads = [], action = {}) {
     default:
       return threads;
   }
-}
+};
 
 export default talksReducer;

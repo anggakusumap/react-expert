@@ -10,14 +10,12 @@ const ActionType = {
   NEUTRAL_VOTE_THREAD: 'NEUTRAL_VOTE_THREAD',
 };
 
-function receiveThreadsActionCreator(threads) {
-  return {
-    type: ActionType.RECEIVE_THREADS,
-    payload: {
-      threads,
-    },
-  };
-}
+const receiveThreadsActionCreator = (threads) => ({
+  type: ActionType.RECEIVE_THREADS,
+  payload: {
+    threads,
+  },
+});
 
 const addThreadActionCreator = (thread) => ({
   type: ActionType.ADD_THREAD,

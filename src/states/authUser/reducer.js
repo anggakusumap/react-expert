@@ -1,6 +1,6 @@
 import { ActionType } from './action';
 
-export default function authUserReducer(authUser = null, action = {}) {
+const authUserReducer = (authUser = null, action = {}) => {
   switch (action.type) {
     case ActionType.SET_AUTH_USER:
       return action.payload.authUser;
@@ -9,4 +9,6 @@ export default function authUserReducer(authUser = null, action = {}) {
     default:
       return authUser;
   }
-}
+};
+
+export default authUserReducer;
