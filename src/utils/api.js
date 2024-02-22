@@ -1,4 +1,4 @@
-export default function api() {
+const api = (() => {
   const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
   const putAccessToken = (token) => localStorage.setItem('accessToken', token);
@@ -242,4 +242,6 @@ export default function api() {
     neutralVoteComment,
     getLeaderboards,
   };
-}
+})();
+
+export default api;
