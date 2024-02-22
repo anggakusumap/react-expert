@@ -1,6 +1,6 @@
 import { ActionType } from './action';
 
-const talksReducer = (threads = [], action = {}) => {
+const threadsReducer = (threads = [], action = {}) => {
   switch (action.type) {
     case ActionType.RECEIVE_THREADS:
       return action.payload.threads;
@@ -50,4 +50,4 @@ const talksReducer = (threads = [], action = {}) => {
   }
 };
 
-export default talksReducer;
+export default threadsReducer;
