@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { asyncPreloadProcess } from './states/isPreload/action';
 // import { asyncUnsetAuthUser } from './states/authUser/action';
