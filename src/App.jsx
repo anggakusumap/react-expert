@@ -1,38 +1,63 @@
-import React, { useState } from 'react';
-import reactLogo from './assets/react.svg';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import { asyncPreloadProcess } from './states/isPreload/action';
+// import { asyncUnsetAuthUser } from './states/authUser/action';
+import Loading from './components/Loading';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ListPage from './pages/ListPage';
+import DetailPage from './pages/DetailPage';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const {
+    authUser = null,
+    isPreload = false,
+  } = useSelector((states) => states);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncPreloadProcess());
+  }, [dispatch]);
+
+  // const onSignOut = () => {
+  //   dispatch(asyncUnsetAuthUser());
+  // };
+
+  if (isPreload) {
+    return null;
+  }
+
+  if (authUser === null) {
+    return (
+      <>
+        <Loading />
+        <main>
+          <Routes>
+            <Route path="/*" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Routes>
+        </main>
+      </>
+    );
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/public/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Loading />
+      <div className="app-container">
+        <header>
+          {/* <Navigation authUser={authUser} signOut={onSignOut} /> */}
+        </header>
+        <main>
+          <Routes>
+            <Route path="/" element={<ListPage />} />
+            <Route path="/talks/:id" element={<DetailPage />} />
+          </Routes>
+        </main>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((data) => data + 1)}>
-          count is
-          {' '}
-          {count}
-        </button>
-        <p>
-          Edit
-          {' '}
-          <code>src/App.jsx</code>
-          {' '}
-          and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
