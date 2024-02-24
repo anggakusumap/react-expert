@@ -18,10 +18,10 @@ const unsetAuthUserActionCreator = () => ({
   type: ActionType.UNSET_AUTH_USER,
 });
 
-const asyncSetAuthUser = ({ id, password }) => async (dispatch) => {
+const asyncSetAuthUser = ({ email, password }) => async (dispatch) => {
   dispatch(showLoading());
   try {
-    const token = await api.login({ id, password });
+    const token = await api.login({ email, password });
     api.putAccessToken(token);
     const authUser = await api.getOwnProfile();
     dispatch(setAuthUserActionCreator(authUser));

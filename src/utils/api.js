@@ -33,13 +33,13 @@ const api = (() => {
     return user;
   };
 
-  const login = async ({ id, password }) => {
+  const login = async ({ email, password }) => {
     const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id, password }),
+      body: JSON.stringify({ email, password }),
     });
 
     const { status, message, data: { token } } = await response.json();

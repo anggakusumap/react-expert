@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { asyncPreloadProcess } from './states/isPreload/action';
-// import { asyncUnsetAuthUser } from './states/authUser/action';
 import Loading from './components/Loading';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const {
@@ -20,10 +21,6 @@ function App() {
   useEffect(() => {
     dispatch(asyncPreloadProcess());
   }, [dispatch]);
-
-  // const onSignOut = () => {
-  //   dispatch(asyncUnsetAuthUser());
-  // };
 
   if (isPreload) {
     return null;
@@ -39,6 +36,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </main>
+        <ToastContainer />
       </>
     );
   }
@@ -57,6 +55,7 @@ function App() {
           </Routes>
         </main>
       </div>
+      <ToastContainer />
     </>
   );
 }

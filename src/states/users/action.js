@@ -12,9 +12,10 @@ const receiveUsersActionCreator = (users) => ({
   },
 });
 
-const asyncRegisterUser = ({ id, name, password }) => async () => {
+const asyncRegisterUser = ({ name, email, password }) => async () => {
   try {
-    await api.register({ id, name, password });
+    await api.register({ name, email, password });
+    toast.success('successs');
   } catch (error) {
     toast.error(error.message);
   }

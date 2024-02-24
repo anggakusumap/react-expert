@@ -2,17 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useInput from '../hooks/useInput';
 
-function LoginInput({ login }) {
+function RegisterInput({ register }) {
+  const [name, onNameChange] = useInput('');
   const [email, onEmailChange] = useInput('');
   const [password, onPasswordChange] = useInput('');
 
   return (
     <>
       <div className="mb-4 w-full">
+        <label htmlFor="name" className=" text-gray-700">
+          Name
+          <input type="text" value={name} onChange={onNameChange} name="name" id="name" className="border border-gray-300 sm:text-sm rounded-lg block w-full p-2.5" required="" />
+        </label>
+      </div>
+      <div className="mb-4 w-full">
         <label htmlFor="email" className=" text-gray-700">
           Email
           <input type="email" value={email} onChange={onEmailChange} name="email" id="email" className="border border-gray-300 sm:text-sm rounded-lg block w-full p-2.5" required="" />
-
         </label>
       </div>
       <div className="mb-4 w-full">
@@ -22,18 +28,18 @@ function LoginInput({ login }) {
         </label>
       </div>
       <button
-        type="button"
+        type="submit"
         className="bg-blue-500 text-white px-4 py-2 hover:bg-blue-700 transition-colors w-full rounded-lg"
-        onClick={() => login({ email, password })}
+        onClick={() => register({ name, email, password })}
       >
-        Login
+        Register
       </button>
     </>
   );
 }
 
-LoginInput.propTypes = {
-  login: PropTypes.func.isRequired,
+RegisterInput.propTypes = {
+  register: PropTypes.func.isRequired,
 };
 
-export default LoginInput;
+export default RegisterInput;
