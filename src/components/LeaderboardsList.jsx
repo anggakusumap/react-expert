@@ -18,7 +18,7 @@ function LeaderboardsList() {
               <p>{leaderboard.user.email}</p>
             </div>
           </div>
-          <p>{leaderboard.score}</p>
+          <p className="text-xl font-medium">{leaderboard.score}</p>
         </div>
       )) }
     </div>
