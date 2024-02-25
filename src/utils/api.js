@@ -58,7 +58,8 @@ const api = (() => {
   };
 
   const getAllUsers = async () => {
-    const { status, message, data: { users } } = await fetch(`${BASE_URL}/users`);
+    const response = await fetch(`${BASE_URL}/users`);
+    const { status, message, data: { users } } = await response.json();
 
     if (status !== 'success') throw new Error(message);
 

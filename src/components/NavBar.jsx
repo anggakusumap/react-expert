@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncUnsetAuthUser } from '../states/authUser/action';
 
 const navigation = [
   { name: 'Threads', href: '#', current: true },
   { name: 'Leaderboard', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
 ];
 
 function classNames(...classes) {
@@ -13,6 +14,13 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const { authUser } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const onSignOut = () => {
+    dispatch(asyncUnsetAuthUser());
+  };
+
   return (
     <Disclosure as="nav" className="bg-gradient-to-br from-sky-500 to-blue-600">
       {({ open }) => (
@@ -21,7 +29,7 @@ export default function NavBar() {
             <div className="relative flex h-16 items-center justify-between border-b-2">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-blue-400 hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -40,7 +48,7 @@ export default function NavBar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative flex items-center justify-center rounded-full bg-blue-800 text-sm px-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
@@ -48,6 +56,7 @@ export default function NavBar() {
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
                       />
+                      <p className="text-white p-2 hidden md:flex">{authUser.name}</p>
                     </Menu.Button>
                   </div>
                   <Transition
@@ -62,32 +71,14 @@ export default function NavBar() {
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#a"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#a"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Settings
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#a"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          <div
+                            type="button"
+                            onClick={onSignOut}
+                            aria-hidden="true"
+                            className={classNames(active ? 'bg-blue-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-blue-700')}
                           >
                             Sign out
-                          </a>
+                          </div>
                         )}
                       </Menu.Item>
                     </Menu.Items>
@@ -102,7 +93,7 @@ export default function NavBar() {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      item.current ? 'bg-blue-900 text-white' : 'text-blue-300 hover:bg-blue-700 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium',
                     )}
                     aria-current={item.current ? 'page' : undefined}
@@ -122,7 +113,7 @@ export default function NavBar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    item.current ? 'bg-blue-900 text-white' : 'text-blue-300 hover:bg-blue-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium',
                   )}
                   aria-current={item.current ? 'page' : undefined}

@@ -10,6 +10,7 @@ import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
 import 'react-toastify/dist/ReactToastify.css';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 function App() {
   const {
@@ -55,6 +56,7 @@ function App() {
             <Route path="/talks/:id" element={<DetailPage />} />
           </Routes>
         </main>
+        <Footer />
       </div>
       <ToastContainer />
     </>
