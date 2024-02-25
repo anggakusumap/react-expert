@@ -14,9 +14,10 @@ function receiveLeaderboardsActionCreator(leaderboards) {
   };
 }
 
-const asyncGetLeaderboards = () => async () => {
+const asyncGetLeaderboards = () => async (dispatch) => {
   try {
-    await api.getLeaderboards();
+    const leaderboards = await api.getLeaderboards();
+    dispatch(receiveLeaderboardsActionCreator(leaderboards));
   } catch (error) {
     toast.error(error.message);
   }

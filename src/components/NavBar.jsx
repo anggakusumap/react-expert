@@ -2,12 +2,8 @@ import React, { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 import { asyncUnsetAuthUser } from '../states/authUser/action';
-
-const navigation = [
-  { name: 'Threads', href: '#', current: true },
-  { name: 'Leaderboard', href: '#', current: false },
-];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -16,6 +12,12 @@ function classNames(...classes) {
 export default function NavBar() {
   const { authUser } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const navigation = [
+    { name: 'Threads', href: '/', current: location.pathname === '/' },
+    { name: 'Leaderboard', href: '/leaderboards', current: location.pathname === '/leaderboards' },
+  ];
 
   const onSignOut = () => {
     dispatch(asyncUnsetAuthUser());

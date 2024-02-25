@@ -29,7 +29,7 @@ function RegisterInput({ register }) {
       </div>
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 hover:bg-blue-700 transition-colors w-full rounded-lg"
+        className="bg-gradient-to-br from-sky-500 to-blue-600 text-white px-4 py-2 w-full rounded-lg"
         onClick={() => register({ name, email, password })}
       >
         Register

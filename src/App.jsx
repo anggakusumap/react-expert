@@ -11,6 +11,7 @@ import DetailPage from './pages/DetailPage';
 import 'react-toastify/dist/ReactToastify.css';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import LeaderboardsPage from './pages/LeaderboardsPage';
 
 function App() {
   const {
@@ -54,6 +55,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ListPage />} />
             <Route path="/talks/:id" element={<DetailPage />} />
+            <Route path="/leaderboards" element={<LeaderboardsPage />} />
           </Routes>
         </main>
         <Footer />
