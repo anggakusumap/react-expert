@@ -2,7 +2,9 @@ import React from 'react';
 
 function ListPage() {
   return (
-    <div>ListPage</div>
+    <div>
+      {/* <TabsMenu /> */}
+    </div>
   );
 }
 

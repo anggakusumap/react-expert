@@ -9,6 +9,7 @@ import RegisterPage from './pages/RegisterPage';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
 import 'react-toastify/dist/ReactToastify.css';
+import NavBar from './components/NavBar';
 
 function App() {
   const {
@@ -46,7 +47,7 @@ function App() {
       <Loading />
       <div className="app-container">
         <header>
-          {/* <Navigation authUser={authUser} signOut={onSignOut} /> */}
+          <NavBar />
         </header>
         <main>
           <Routes>
