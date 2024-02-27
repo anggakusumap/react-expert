@@ -53,6 +53,28 @@ const threadDetailReducer = (threadDetail = null, action = {}) => {
           return comment;
         }),
       };
+    case ActionType.UP_VOTE_THREAD_DETAIL:
+      return {
+        ...threadDetail,
+        upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
+          ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
+          : [...threadDetail.upVotesBy, action.payload.userId],
+        downVotesBy: threadDetail.downVotesBy.filter((id) => id !== action.payload.userId),
+      };
+    case ActionType.DOWN_VOTE_THREAD_DETAIL:
+      return {
+        ...threadDetail,
+        upVotesBy: threadDetail.upVotesBy.filter((id) => id !== action.payload.userId),
+        downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
+          ? threadDetail.downVotesBy.filter((id) => id !== action.payload.userId)
+          : [...threadDetail.downVotesBy, action.payload.userId],
+      };
+    case ActionType.NEUTRAL_VOTE_THREAD_DETAIL:
+      return {
+        ...threadDetail,
+        upVotesBy: threadDetail.upVotesBy.filter((id) => id !== action.payload.userId),
+        downVotesBy: threadDetail.downVotesBy.filter((id) => id !== action.payload.userId),
+      };
     default:
       return threadDetail;
   }

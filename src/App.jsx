@@ -55,7 +55,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<ListPage />} />
-            <Route path="/talks/:id" element={<DetailPage />} />
+            <Route path="/thread/:id" element={<DetailPage />} />
             <Route path="/leaderboards" element={<LeaderboardsPage />} />
             <Route path="/create-thread" element={<CreateThreadPage />} />
           </Routes>

@@ -8,7 +8,6 @@ const threadsReducer = (threads = [], action = {}) => {
       return [action.payload.thread, ...threads];
     case ActionType.UP_VOTE_THREAD:
       return threads.map((thread) => {
-        console.log('action.payload.threadId :>> ', action.payload.threadId);
         if (thread.id === action.payload.threadId) {
           return {
             ...thread,

@@ -3,12 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ChatBubbleBottomCenterIcon, HandThumbDownIcon, HandThumbUpIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import postedAt from '../utils/postedAt';
 import { asyncDownVoteThread, asyncNeutralVoteThread, asyncUpVoteThread } from '../states/threads/action';
 
 function ThreadItem({ thread, users }) {
-  const { authUser } = useSelector((states) => states);
+  const { authUser } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
 
   const isTalkLiked = thread.upVotesBy.includes(authUser.id);
   const isTalkDisliked = thread.downVotesBy.includes(authUser.id);
@@ -29,8 +31,23 @@ function ThreadItem({ thread, users }) {
     }
   };
 
+  const onClickDetail = (threadId) => {
+    navigateTo(`thread/${threadId}`);
+  };
+
   return (
-    <div key={thread.id} className="border-b-2 p-4 flex flex-col gap-5 hover:bg-stone-100 cursor-pointer">
+    <div
+      role="button"
+      tabIndex={0} // Add tabIndex to make the element focusable
+      onClick={() => onClickDetail(thread.id)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onClickDetail(thread.id);
+        }
+      }}
+      key={thread.id}
+      className="border-b-2 p-4 flex flex-col gap-5 hover:bg-stone-100 cursor-pointer"
+    >
       <h2 className="text-2xl text-blue-900 font-semibold">{ thread.title }</h2>
       <p className="border p-2 rounded-lg w-fit">
         #
@@ -38,18 +55,39 @@ function ThreadItem({ thread, users }) {
       </p>
       <h4 className=" text-base line-clamp-5" dangerouslySetInnerHTML={{ __html: thread.body }} />
       <div className="flex gap-3 flex-wrap">
-        <button type="button" className="flex gap-1" onClick={() => onLike(thread.id)}>
-          <HandThumbUpIcon color={`${isTalkLiked ? 'green' : 'black'}`} className="w-6" />
+        <button
+          type="button"
+          className="flex gap-1"
+          onClick={(e) => {
+            e.stopPropagation();
+            onLike(thread.id);
+          }}
+        >
+          <HandThumbUpIcon color={`${isTalkLiked ? 'green' : 'black'}`} className="w-6 scale-95 hover:scale-125 transition transform duration-100 ease-in" />
           {thread.upVotesBy.length}
         </button>
-        <button type="button" className="flex gap-1" onClick={() => onDislike(thread.id)}>
-          <HandThumbDownIcon color={`${isTalkDisliked ? 'red' : 'black'}`} className="w-6" />
+        <button
+          type="button"
+          className="flex gap-1"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDislike(thread.id);
+          }}
+        >
+          <HandThumbDownIcon color={`${isTalkDisliked ? 'red' : 'black'}`} className="w-6 scale-95 hover:scale-125 transition transform duration-100 ease-in" />
           {thread.downVotesBy.length}
         </button>
-        <div className="flex gap-1">
-          <ChatBubbleBottomCenterIcon color="black" className="w-6" />
+        <button
+          type="button"
+          className="flex gap-1"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClickDetail(thread.id);
+          }}
+        >
+          <ChatBubbleBottomCenterIcon color="black" className="w-6 scale-95 hover:scale-125 transition transform duration-100 ease-in" />
           {thread.totalComments}
-        </div>
+        </button>
         <div className="flex">
           {postedAt(thread.createdAt)}
         </div>
