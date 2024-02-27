@@ -24,7 +24,7 @@ const addCommentActionCreator = (comment) => ({
   },
 });
 
-const upVoteCommentActionCreator = (commentId, userId) => ({
+const upVoteCommentActionCreator = ({ commentId, userId }) => ({
   type: ActionType.UP_VOTE_COMMENT,
   payload: {
     commentId,
@@ -32,7 +32,7 @@ const upVoteCommentActionCreator = (commentId, userId) => ({
   },
 });
 
-const downVoteCommentActionCreator = (commentId, userId) => ({
+const downVoteCommentActionCreator = ({ commentId, userId }) => ({
   type: ActionType.DOWN_VOTE_COMMENT,
   payload: {
     commentId,
@@ -40,7 +40,7 @@ const downVoteCommentActionCreator = (commentId, userId) => ({
   },
 });
 
-const neutralVoteCommentActionCreator = (commentId, userId) => ({
+const neutralVoteCommentActionCreator = ({ commentId, userId }) => ({
   type: ActionType.NEUTRAL_VOTE_COMMENT,
   payload: {
     commentId,

@@ -24,7 +24,7 @@ const addThreadActionCreator = (thread) => ({
   },
 });
 
-const upVoteThreadActionCreator = (threadId, userId) => ({
+const upVoteThreadActionCreator = ({ threadId, userId }) => ({
   type: ActionType.UP_VOTE_THREAD,
   payload: {
     threadId,
@@ -32,7 +32,7 @@ const upVoteThreadActionCreator = (threadId, userId) => ({
   },
 });
 
-const downVoteThreadActionCreator = (threadId, userId) => ({
+const downVoteThreadActionCreator = ({ threadId, userId }) => ({
   type: ActionType.DOWN_VOTE_THREAD,
   payload: {
     threadId,
@@ -40,7 +40,7 @@ const downVoteThreadActionCreator = (threadId, userId) => ({
   },
 });
 
-const neutralVoteThreadActionCreator = (threadId, userId) => ({
+const neutralVoteThreadActionCreator = ({ threadId, userId }) => ({
   type: ActionType.NEUTRAL_VOTE_THREAD,
   payload: {
     threadId,

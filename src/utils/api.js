@@ -124,7 +124,7 @@ const api = (() => {
     return comment;
   };
 
-  const upVoteThread = async ({ threadId }) => {
+  const upVoteThread = async (threadId) => {
     const response = await fetchWithAuth(`${BASE_URL}/threads/${threadId}/up-vote`, {
       method: 'POST',
       headers: {
@@ -132,14 +132,14 @@ const api = (() => {
       },
     });
 
-    const { status, message, data: { vote } } = await response.json();
+    const { status, message, data: { vote } } = await response;
 
     if (status !== 'success') throw new Error(message);
 
     return vote;
   };
 
-  const downVoteThread = async ({ threadId }) => {
+  const downVoteThread = async (threadId) => {
     const response = await fetchWithAuth(`${BASE_URL}/threads/${threadId}/down-vote`, {
       method: 'POST',
       headers: {
@@ -147,14 +147,14 @@ const api = (() => {
       },
     });
 
-    const { status, message, data: { vote } } = await response.json();
+    const { status, message, data: { vote } } = await response;
 
     if (status !== 'success') throw new Error(message);
 
     return vote;
   };
 
-  const neutralVoteThread = async ({ threadId }) => {
+  const neutralVoteThread = async (threadId) => {
     const response = await fetchWithAuth(`${BASE_URL}/threads/${threadId}/neutral-vote`, {
       method: 'POST',
       headers: {
@@ -162,14 +162,14 @@ const api = (() => {
       },
     });
 
-    const { status, message, data: { vote } } = await response.json();
+    const { status, message, data: { vote } } = await response;
 
     if (status !== 'success') throw new Error(message);
 
     return vote;
   };
 
-  const upVoteComment = async ({ commentId }) => {
+  const upVoteComment = async (commentId) => {
     const response = await fetchWithAuth(`${BASE_URL}/threads/${commentId}/up-vote`, {
       method: 'POST',
       headers: {
@@ -177,14 +177,14 @@ const api = (() => {
       },
     });
 
-    const { status, message, data: { vote } } = await response.json();
+    const { status, message, data: { vote } } = await response;
 
     if (status !== 'success') throw new Error(message);
 
     return vote;
   };
 
-  const downVoteComment = async ({ commentId }) => {
+  const downVoteComment = async (commentId) => {
     const response = await fetchWithAuth(`${BASE_URL}/threads/${commentId}/down-vote`, {
       method: 'POST',
       headers: {
@@ -192,14 +192,14 @@ const api = (() => {
       },
     });
 
-    const { status, message, data: { vote } } = await response.json();
+    const { status, message, data: { vote } } = await response;
 
     if (status !== 'success') throw new Error(message);
 
     return vote;
   };
 
-  const neutralVoteComment = async ({ commentId }) => {
+  const neutralVoteComment = async (commentId) => {
     const response = await fetchWithAuth(`${BASE_URL}/threads/${commentId}/neutral-vote`, {
       method: 'POST',
       headers: {
@@ -207,7 +207,7 @@ const api = (() => {
       },
     });
 
-    const { status, message, data: { vote } } = await response.json();
+    const { status, message, data: { vote } } = await response;
 
     if (status !== 'success') throw new Error(message);
 

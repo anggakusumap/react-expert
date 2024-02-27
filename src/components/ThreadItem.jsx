@@ -2,9 +2,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ChatBubbleBottomCenterIcon, HandThumbDownIcon, HandThumbUpIcon } from '@heroicons/react/24/outline';
+import { useDispatch, useSelector } from 'react-redux';
 import postedAt from '../utils/postedAt';
+import { asyncDownVoteThread, asyncNeutralVoteThread, asyncUpVoteThread } from '../states/threads/action';
 
 function ThreadItem({ thread, users }) {
+  const { authUser } = useSelector((states) => states);
+  const dispatch = useDispatch();
+
+  const isTalkLiked = thread.upVotesBy.includes(authUser.id);
+  const isTalkDisliked = thread.downVotesBy.includes(authUser.id);
+
+  const onLike = (threadId) => {
+    if (isTalkLiked) {
+      dispatch(asyncNeutralVoteThread(threadId));
+    } else {
+      dispatch(asyncUpVoteThread(threadId));
+    }
+  };
+
+  const onDislike = (threadId) => {
+    if (isTalkDisliked) {
+      dispatch(asyncNeutralVoteThread(threadId));
+    } else {
+      dispatch(asyncDownVoteThread(threadId));
+    }
+  };
+
   return (
     <div key={thread.id} className="border-b-2 p-4 flex flex-col gap-5 hover:bg-stone-100 cursor-pointer">
       <h2 className="text-2xl text-blue-900 font-semibold">{ thread.title }</h2>
@@ -14,14 +38,14 @@ function ThreadItem({ thread, users }) {
       </p>
       <h4 className=" text-base line-clamp-5" dangerouslySetInnerHTML={{ __html: thread.body }} />
       <div className="flex gap-3 flex-wrap">
-        <div className="flex gap-1">
-          <HandThumbUpIcon color="black" className="w-6" />
+        <button type="button" className="flex gap-1" onClick={() => onLike(thread.id)}>
+          <HandThumbUpIcon color={`${isTalkLiked ? 'green' : 'black'}`} className="w-6" />
           {thread.upVotesBy.length}
-        </div>
-        <div className="flex gap-1">
-          <HandThumbDownIcon color="black" className="w-6" />
+        </button>
+        <button type="button" className="flex gap-1" onClick={() => onDislike(thread.id)}>
+          <HandThumbDownIcon color={`${isTalkDisliked ? 'red' : 'black'}`} className="w-6" />
           {thread.downVotesBy.length}
-        </div>
+        </button>
         <div className="flex gap-1">
           <ChatBubbleBottomCenterIcon color="black" className="w-6" />
           {thread.totalComments}

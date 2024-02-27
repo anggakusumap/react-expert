@@ -11,7 +11,7 @@ function ThreadList() {
   return (
     <div className="pt-2 pb-10">
       { threads.map((thread) => (
-        <ThreadItem thread={thread} users={users} />
+        <ThreadItem key={thread.id} thread={thread} users={users} />
       ))}
     </div>
   );
