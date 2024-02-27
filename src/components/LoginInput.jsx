@@ -11,14 +11,13 @@ function LoginInput({ login }) {
       <div className="mb-4 w-full">
         <label htmlFor="email" className=" text-gray-700">
           Email
-          <input type="email" value={email} onChange={onEmailChange} name="email" id="email" className="border border-gray-300 sm:text-sm rounded-lg block w-full p-2.5" required="" />
-
+          <input type="email" value={email} onChange={onEmailChange} name="email" id="email" className="border border-gray-300 sm:text-sm rounded-lg block w-full p-2.5" />
         </label>
       </div>
       <div className="mb-4 w-full">
         <label htmlFor="password" className="block text-gray-700">
           Password
-          <input type="password" value={password} onChange={onPasswordChange} name="password" id="password" className="border border-gray-300 sm:text-sm rounded-lg block w-full p-2.5" required="" />
+          <input type="password" value={password} onChange={onPasswordChange} name="password" id="password" className="border border-gray-300 sm:text-sm rounded-lg block w-full p-2.5" />
         </label>
       </div>
       <button

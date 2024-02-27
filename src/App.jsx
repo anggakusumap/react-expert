@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import LeaderboardsPage from './pages/LeaderboardsPage';
+import CreateThreadPage from './pages/CreateThreadPage';
 
 function App() {
   const {
@@ -56,6 +57,7 @@ function App() {
             <Route path="/" element={<ListPage />} />
             <Route path="/talks/:id" element={<DetailPage />} />
             <Route path="/leaderboards" element={<LeaderboardsPage />} />
+            <Route path="/create-thread" element={<CreateThreadPage />} />
           </Routes>
         </main>
         <Footer />

@@ -79,7 +79,7 @@ const api = (() => {
       }),
     });
 
-    const { status, message, data: { thread } } = await response.json();
+    const { status, message, data: { thread } } = await response;
 
     if (status !== 'success') throw new Error(message);
 
