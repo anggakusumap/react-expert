@@ -108,7 +108,7 @@ function ThreadItem({ thread, users }) {
   );
 }
 
-const threadItemShape = {
+export const threadItemShape = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
@@ -120,7 +120,7 @@ const threadItemShape = {
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-const userShape = {
+export const userShape = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,

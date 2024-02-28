@@ -101,39 +101,39 @@ const asyncAddComment = ({ content, threadId }) => async (dispatch) => {
   dispatch(hideLoading());
 };
 
-const asyncUpVoteComment = (threadId) => async (dispatch, getState) => {
+const asyncUpVoteComment = ({ threadId, commentId }) => async (dispatch, getState) => {
   const { authUser } = getState();
-  dispatch(upVoteCommentActionCreator({ threadId, userId: authUser.id }));
+  dispatch(upVoteCommentActionCreator({ commentId, userId: authUser.id }));
 
   try {
-    await api.upVoteComment(threadId);
+    await api.upVoteComment({ threadId, commentId });
   } catch (error) {
     toast.error(error.message);
-    dispatch(upVoteCommentActionCreator({ threadId, userId: authUser.id }));
+    dispatch(upVoteCommentActionCreator({ commentId, userId: authUser.id }));
   }
 };
 
-const asyncDownVoteComment = (threadId) => async (dispatch, getState) => {
+const asyncDownVoteComment = ({ threadId, commentId }) => async (dispatch, getState) => {
   const { authUser } = getState();
-  dispatch(downVoteCommentActionCreator({ threadId, userId: authUser.id }));
+  dispatch(downVoteCommentActionCreator({ commentId, userId: authUser.id }));
 
   try {
-    await api.downVoteComment(threadId);
+    await api.downVoteComment({ threadId, commentId });
   } catch (error) {
     toast.error(error.message);
-    dispatch(downVoteCommentActionCreator({ threadId, userId: authUser.id }));
+    dispatch(downVoteCommentActionCreator({ commentId, userId: authUser.id }));
   }
 };
 
-const asyncNeutralVoteComment = (threadId) => async (dispatch, getState) => {
+const asyncNeutralVoteComment = ({ threadId, commentId }) => async (dispatch, getState) => {
   const { authUser } = getState();
-  dispatch(neutralVoteCommentActionCreator({ threadId, userId: authUser.id }));
+  dispatch(neutralVoteCommentActionCreator({ commentId, userId: authUser.id }));
 
   try {
-    await api.neutralVoteComment(threadId);
+    await api.neutralVoteComment({ threadId, commentId });
   } catch (error) {
     toast.error(error.message);
-    dispatch(neutralVoteCommentActionCreator({ threadId, userId: authUser.id }));
+    dispatch(neutralVoteCommentActionCreator({ commentId, userId: authUser.id }));
   }
 };
 
