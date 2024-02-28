@@ -117,7 +117,7 @@ const api = (() => {
       }),
     });
 
-    const { status, message, data: { comment } } = await response.json();
+    const { status, message, data: { comment } } = await response;
 
     if (status !== 'success') throw new Error(message);
 

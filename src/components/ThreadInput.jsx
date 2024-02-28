@@ -55,7 +55,7 @@ function ThreadInput() {
           onChange={onBodyChange}
           name="body"
           id="body"
-          className="border border-gray-300 sm:text-sm rounded-lg block w-full h-44"
+          className="border border-gray-300 sm:text-sm rounded-lg block w-full h-44 p-2"
         />
       </label>
       <div className="flex justify-between">
