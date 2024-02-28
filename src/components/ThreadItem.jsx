@@ -38,7 +38,7 @@ function ThreadItem({ thread, users }) {
   return (
     <div
       role="button"
-      tabIndex={0} // Add tabIndex to make the element focusable
+      tabIndex={0}
       onClick={() => onClickDetail(thread.id)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -46,7 +46,7 @@ function ThreadItem({ thread, users }) {
         }
       }}
       key={thread.id}
-      className="border-b-2 p-4 flex flex-col gap-5 hover:bg-stone-100 cursor-pointer"
+      className="border-b-2 py-4 flex flex-col gap-5 hover:bg-stone-100 cursor-pointer"
     >
       <h2 className="text-2xl text-blue-900 font-semibold">{ thread.title }</h2>
       <p className="border p-2 rounded-lg w-fit">
