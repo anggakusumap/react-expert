@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import { asyncUnsetAuthUser } from '../states/authUser/action';
 
 function classNames(...classes) {
@@ -89,7 +90,7 @@ export default function NavBar() {
             <div className="hidden sm:block py-3">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     className={classNames(
@@ -99,7 +100,7 @@ export default function NavBar() {
                     aria-current={item.current ? 'page' : undefined}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
