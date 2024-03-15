@@ -5,6 +5,7 @@
  *  - should dispatch action correctly when data fetching success
  *  - should dispatch action and call toast correctly when data fetching failed
  */
+
 import {
   describe, beforeEach, afterEach, it, vi, expect,
 } from 'vitest';
