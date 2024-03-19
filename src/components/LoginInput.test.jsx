@@ -27,13 +27,13 @@ describe('LoginInput component', () => {
   it('should handle username typing correctly', async () => {
     // Arrange
     render(<LoginInput login={() => {}} />);
-    const emailInput = screen.getByLabelText('Email');
+    const emailInput = screen.getByLabelText('Username');
 
     // Action
-    await userEvent.type(emailInput, 'emailtest');
+    await userEvent.type(emailInput, 'test@example.com');
 
     // Assert
-    expect(emailInput).toHaveValue('emailtest');
+    expect(emailInput).toHaveValue('test@example.com');
   });
 
   it('should handle password typing correctly', async () => {
