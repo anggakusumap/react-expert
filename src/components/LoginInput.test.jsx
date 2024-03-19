@@ -1,9 +1,8 @@
-/* eslint-disable react/react-in-jsx-scope */
 /**
  * skenario testing
  *
  * - LoginInput component
- *   - should handle username typing correctly
+ *   - should handle email typing correctly
  *   - should handle password typing correctly
  *   - should call login function when login button is clicked
  */
@@ -24,7 +23,7 @@ describe('LoginInput component', () => {
     cleanup();
   });
 
-  it('should handle username typing correctly', async () => {
+  it('should handle email typing correctly', async () => {
     // Arrange
     render(<LoginInput login={() => {}} />);
     const emailInput = screen.getByLabelText('Email');
