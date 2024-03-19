@@ -15,7 +15,7 @@ function LoginPage() {
     <section>
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
         <div className="bg-white p-8 rounded-lg shadow-lg w-11/12 md:w-5/12 xl:w-4/12 h-auto">
-          <h2 className="text-3xl text-center font-bold mb-4">The Forum</h2>
+          <h2 className="text-3xl text-center font-bold mb-4">The Forum App</h2>
           <form className="flex flex-col gap-3 items-center justify-center">
             <LoginInput login={onLogin} />
           </form>
