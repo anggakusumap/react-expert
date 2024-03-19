@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '@chakra-ui/button';
 import useInput from '../hooks/useInput';
 
 function LoginInput({ login }) {
@@ -20,13 +21,13 @@ function LoginInput({ login }) {
           <input type="password" value={password} onChange={onPasswordChange} name="password" id="password" className="border border-gray-300 sm:text-sm rounded-lg block w-full p-2.5" />
         </label>
       </div>
-      <button
-        type="button"
-        className=" bg-gradient-to-br from-sky-500 to-blue-600 text-white px-4 py-2 w-full rounded-lg"
+      <Button
+        colorScheme="blue"
+        className="w-full"
         onClick={() => login({ email, password })}
       >
         Login
-      </button>
+      </Button>
     </>
   );
 }
