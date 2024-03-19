@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "node": true
+        "node": true,
+        "cypress/globals": true
     },
     "extends": "airbnb",
     "parserOptions": {
@@ -11,5 +12,10 @@
     },
     "rules": {
         "import/no-extraneous-dependencies": "off"
-    }
+    },
+    "plugins": [
+        "react",
+        "react-hooks",
+        "cypress"
+    ]
 }
