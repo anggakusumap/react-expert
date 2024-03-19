@@ -27,7 +27,7 @@ describe('LoginInput component', () => {
   it('should handle username typing correctly', async () => {
     // Arrange
     render(<LoginInput login={() => {}} />);
-    const emailInput = screen.getByLabelText('Username');
+    const emailInput = screen.getByLabelText('Email');
 
     // Action
     await userEvent.type(emailInput, 'test@example.com');
