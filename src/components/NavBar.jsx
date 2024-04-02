@@ -16,8 +16,8 @@ export default function NavBar() {
   const location = useLocation();
 
   const navigation = [
-    { name: 'Threads', href: '/', current: location.pathname === '/' },
-    { name: 'Leaderboard', href: '/leaderboards', current: location.pathname === '/leaderboards' },
+    { name: 'Threads', to: '/', current: location.pathname === '/' },
+    { name: 'Leaderboard', to: '/leaderboards', current: location.pathname === '/leaderboards' },
   ];
 
   const onSignOut = () => {
@@ -92,7 +92,7 @@ export default function NavBar() {
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.to}
                     className={classNames(
                       item.current ? 'bg-blue-900 text-white' : 'text-blue-300 hover:bg-blue-700 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium',
@@ -112,7 +112,7 @@ export default function NavBar() {
                 <Disclosure.Button
                   key={item.name}
                   as="a"
-                  href={item.href}
+                  to={item.to}
                   className={classNames(
                     item.current ? 'bg-blue-900 text-white' : 'text-blue-300 hover:bg-blue-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium',
